@@ -35,4 +35,10 @@ const login = async (req, res)=>{
     })
 }
 
-module.exports = {login}
+const getUserInfo = async(req, res)=>{
+    const {email} = req.params
+    const userData = await User.findOne({email})
+    res.json({userData})
+} 
+
+module.exports = { login, getUserInfo}
