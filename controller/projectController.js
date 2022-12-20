@@ -2,23 +2,24 @@ const Projects = require('../model/projectModel')
 
 const updateProject = async(req,res)=>{
     const {id} = req.params
-    const {projectData} = req.body
+    console.log(req.body)
     await Projects.findByIdAndDelete(id)
     await Projects.create({
-        name:projectData.name,
-        location:projectData.location,
-        latitude:projectData.latitude,
-        longitude:projectData.longitude,
-        exec:projectData.exec,
-        cost:projectData.cost,
-        timespan:projectData.timespan,
-        project_id:projectData.project_id,
-        goal:projectData.goal,
-        start_date:projectData.start_date,
-        completion:projectData.completion,
-        actual_cost:projectData.actual_cost,
-        status:projectData.status
+        name:req.body.name,
+        location:req.body.location,
+        latitude:req.body.latitude,
+        longitude:req.body.longitude,
+        exec:req.body.exec,
+        cost:req.body.cost,
+        timespan:req.body.timespan,
+        project_id:req.body.project_id,
+        goal:req.body.goal,
+        start_date:req.body.start_date,
+        completion:req.body.completion,
+        actual_cost:req.body.actual_cost,
+        status:req.body.status
     })
+    res.send({success:true})
 }
 
 module.exports = {updateProject}
