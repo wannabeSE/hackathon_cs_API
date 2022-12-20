@@ -6,7 +6,7 @@ const { getProjects, getProposals } = require('../data/data_fetch')
 
 
 
-router.route('/register-project-from-csv').get(projectCsv)
+router.route('/register-project-from-csv').post(projectCsv)
 router.route('/register-project').post(registerProject)
 router.route('/register-proposal-from-csv').post(proposalCsv)
 router.route('/register-component-from-csv').post(componentsCsv)

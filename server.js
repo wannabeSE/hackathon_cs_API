@@ -5,6 +5,7 @@ const port = 3000
 const cors = require('cors')
 const dataRoute = require('./routes/dataRoute') 
 const userRoute = require('./routes/userRoutes')
+const projectRoute = require('./routes/projectRoute')
 mongoose.connect(
     'mongodb+srv://samir724:hackathon123456@cluster0.ycj6o80.mongodb.net/test',
     {
@@ -25,3 +26,4 @@ app.use(express.json())
 app.use(cors())
 app.use('/api',dataRoute)
 app.use('/api',userRoute)
+app.use('/api',projectRoute)

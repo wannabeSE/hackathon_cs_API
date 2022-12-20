@@ -15,9 +15,18 @@ const projectSchema = mongoose.Schema(
       longitude: {
         type: String,
       },
+      exec:{
+        type:String
+      },
+      cost:{
+        type: Number
+      },
+      timespan:{
+        type: Number
+      },
       project_id:{
         type : String,
-        unique : true
+        
       },
       goal: {
         type: String,
@@ -37,9 +46,9 @@ const projectSchema = mongoose.Schema(
       },
       status:{
         type:String,
-        enum:['onGoing','done','cancelled'],
+        enum:['onGoing','done','cancelled','queued'],
         required:true, 
-        default:'onGoing'
+        default:'queued'
       }
     },
     {

@@ -9,12 +9,15 @@ const Agency = require('../model/agencyModel')
 
 
 const registerProject = async(req, res)=>{
-    const {name, location, latitude, longitude, project_id, goal, start_date, completion, actual_cost } = req.body
+    const {name, location, latitude, longitude, exec, cost, timespan, project_id, goal, start_date, completion, actual_cost } = req.body
     const project =await Projects.create({
         name:name,
         location:location,
         latitude:latitude,
         longitude:longitude,
+        exec:exec,
+        cost:cost,
+        timespan:timespan,
         project_id:project_id,
         goal:goal,
         start_date:start_date,
