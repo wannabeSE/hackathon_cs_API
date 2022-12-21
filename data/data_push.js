@@ -31,78 +31,45 @@ const registerProject = async(req, res)=>{
     }
 
 }
-
-
-const projectCsv = async(req, res)=> {
-
+const csvLoader = async(fl,db)=>{
     await csvtojson()
-    .fromFile('projects - projects.csv')
+    .fromFile(fl)
     .then((csvData)=>{
         console.log(csvData)
-        Projects.insertMany(csvData).then(function(){
+        db.insertMany(csvData).then(function(){
             console.log('Data Inserted')
-            res.json({success:true})
         }).catch(function(err){
             console.log(err)
         })
     })
+}
+
+const projectCsv = async(req, res)=> {
+
+    csvLoader('projects - projects.csv',Projects)
+    res.send({success:true})
 }
 
 const proposalCsv = async(req, res)=> {
    
-    await csvtojson()
-    .fromFile('proposals - proposals.csv')
-    .then((csvData)=>{
-        console.log(csvData)
-        Proposal.insertMany(csvData).then(function(){
-            console.log('Data Inserted')
-            res.json({success:true})
-        }).catch(function(err){
-            console.log(err)
-        })
-    })
+    csvLoader('proposals - proposals.csv',Proposal)
+    res.send({success:true})
 }
 
 const componentsCsv = async (req, res)=>{
-    await csvtojson()
-    .fromFile('components.csv')
-    .then((csvData)=>{
-        console.log(csvData)
-        Component.insertMany(csvData).then(function(){
-            console.log('Data Inserted')
-            res.json({success:true})
-        }).catch(function(err){
-            console.log(err)
-        })
-    })
+    csvLoader('components.csv',Component)
+    res.send({success:true})
 }
 
 const constraintsCsv = async (req, res)=>{
-    await csvtojson()
-    .fromFile('constraints - constraints.csv')
-    .then((csvData)=>{
-        console.log(csvData)
-        Constraints.insertMany(csvData).then(function(){
-            console.log('Data Inserted')
-            res.json({success:true})
-        }).catch(function(err){
-            console.log(err)
-        })
-    })
+    csvLoader('constraints - constraints.csv',Constraints)
+    res.send({success:true})
 }
 
 const agencyCsv = async (req, res)=>{
-    await csvtojson()
-    .fromFile('agencies.csv')
-    .then((csvData)=>{
-        console.log(csvData)
-        Agency.insertMany(csvData).then(function(){
-            console.log('Data Inserted')
-            res.json({success:true})
-        }).catch(function(err){
-            console.log(err)
-        })
-    })
+   
+    csvLoader('agencies.csv',Agency)
+    res.send({success:true})
 }
 
 
